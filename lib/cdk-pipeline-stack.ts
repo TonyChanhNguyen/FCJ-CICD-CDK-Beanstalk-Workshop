@@ -17,7 +17,7 @@
         synth: new ShellStep('Synth', {
             // Where the source can be found
             input: CodePipelineSource.gitHub('TonyChanhNguyen/FCJ-CICD-CDK-Beanstalk-Workshop', 'main', {
-                authentication: cdk.SecretValue.secretsManager('`github-access-token-secret`'), }),
+                authentication: cdk.SecretValue.secretsManager('`github-access-token`'), }),
             
             // Build and run cdk synth
             commands: [
