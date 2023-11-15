@@ -2,6 +2,7 @@
     import { Construct } from 'constructs';
     import {  Stack, StackProps } from 'aws-cdk-lib';
     import * as cdk from 'aws-cdk-lib';
+    import { CdkEBStage } from './eb-stage';
     /**
     * The stack that defines the application pipeline
     */
@@ -29,5 +30,15 @@
         });
 
         // This is where we add the application stages
+        // deploy beanstalk app
+        // For environment with all default values:
+        // const deploy = new CdkEBStage(this, 'Pre-Prod');
+    
+        // For environment with custom AutoScaling group configuration
+        const deploy = new CdkEBStage(this, 'Pre-Prod', { 
+            minSize : "1",
+            maxSize : "2"
+        });
+        const deployStage = pipeline.addStage(deploy); 
     }
     }
